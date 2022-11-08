@@ -1,0 +1,35 @@
+<div class="map">
+  Selected Regions: {{regionsGroup.value}}
+  <mat-grid-list cols="7" rowHeight="1:1" gutterSize="1em">
+    <mat-grid-tile
+      *ngFor="let region of regions"
+      [colspan]="region.cols"
+      [rowspan]="region.rows">
+      <mat-button-toggle
+        #regionToggle
+        [style.background]="region.color"
+        [matTooltip]="region.name"
+        [value]="region.text"
+      >{{region.text}}</mat-button-toggle>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-button-toggle-group #regionsGroup="matButtonToggleGroup" multiple></mat-button-toggle-group>
+</div>
+<div class="map">
+  Selected Districts: {{districtsGroup.value}}
+  <mat-grid-list cols="10" rowHeight="1:1" gutterSize="1em">
+    <mat-grid-tile
+      *ngFor="let district of districts"
+      [colspan]="district.cols"
+      [rowspan]="district.rows">
+      <mat-button-toggle
+        *ngIf="district.text !== ''"
+        #districtToggle
+        [style.background]="district.color"
+        [matTooltip]="district.name"
+        [value]="district.text"
+      >{{district.text}}</mat-button-toggle>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-button-toggle-group #districtsGroup="matButtonToggleGroup" multiple></mat-button-toggle-group>
+</div>
